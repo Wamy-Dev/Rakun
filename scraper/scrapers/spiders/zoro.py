@@ -26,10 +26,8 @@ class ZoroSpider(scrapy.Spider):
         for anime in animeList:
             title = anime.attrib["title"]
             link = f"https://zoro.to{anime.attrib['href']}"
-
             animeItem["title"] = title
             animeItem["link"] = link
             animeItem["type"] = "Anime"
             animeItem["source"] = "Zoro"
-
             yield animeItem
