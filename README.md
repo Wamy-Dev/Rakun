@@ -9,28 +9,28 @@ A pirated Anime, Manga, Ero-Manga, Ero-Anime search engine.
 - [x] 9Anime
 - [x] Yugen
 - [x] Zoro
-- [] KickAssAnimes
+- [ ] KickAssAnimes
 
 ## Current Sources (Ero-Anime):
-- [] HAnime
-- [] HentaiGasm
-- [] Haho
-- [] HentaiWorld
-- [] HStream
-- [] Oppai
+- [ ] HAnime
+- [ ] HentaiGasm
+- [ ] Haho
+- [ ] HentaiWorld
+- [ ] HStream
+- [ ] Oppai
 
 ## Current Sources (Manga):
-- [] MangaDex
-- [] Comick
-- [] MangaReader
-- [] FanFox
-- [] Bato
-- [] Serimanga
+- [ ] MangaDex
+- [ ] Comick
+- [ ] MangaReader
+- [ ] FanFox
+- [ ] Bato
+- [ ] Serimanga
 
 ## Current Source (Ero-Manga):
-- [] Doujins
-- [] NHentai
-- [] Pururin
+- [ ] Doujins
+- [ ] NHentai
+- [ ] Pururin
 
 
 
