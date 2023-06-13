@@ -29,5 +29,4 @@ class ZoroSpider(scrapy.Spider):
             animeItem["title"] = title
             animeItem["link"] = {"Zoro":link}
             animeItem["type"] = "Anime"
-            animeItem["source"] = "Zoro"
             yield animeItem

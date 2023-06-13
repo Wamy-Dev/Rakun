@@ -5,8 +5,8 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
 from scrapy.exceptions import NotConfigured
+from .functions.jsonFunc import combine_item
 
 class AnimePipeline():
 
@@ -22,6 +22,7 @@ class AnimePipeline():
     def close_spider(self, _):
         pass
     def process_item(self, item, _):
+        combine_item(item)
         return item
          
 
