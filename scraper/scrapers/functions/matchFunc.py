@@ -11,6 +11,8 @@ def getMaxSimilarity(item_title, titles):
     best_title = None
     for title in titles:
         similarity = fuzz.ratio(item_title, title["title"])
+        if similarity < 50:
+            continue
         if similarity > max_similarity:
             max_similarity = similarity
             best_title = title["title"]
