@@ -4,6 +4,7 @@
 
 from jikanpy import Jikan
 from fuzzywuzzy import fuzz
+import time
 jikan = Jikan()
 
 def getMaxSimilarity(item_title, titles):
@@ -23,6 +24,7 @@ def matchName(item):
     item_type = item["type"]
     try:
         search = jikan.search(item_type.lower(), item_title)
+        time.sleep(1)
         similarTitles = []
         for anime in search["data"]:
             titles = []

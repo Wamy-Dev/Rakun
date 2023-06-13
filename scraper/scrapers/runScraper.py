@@ -20,12 +20,12 @@ class Scraper:
         self.process = CrawlerProcess(get_project_settings())
         self.spiders = [
             AnimeflixSpider,
-            # AnimePaheSpider,
-            # GogoanimeSpider,
-            # KatoSpider,
-            # NineanimeSpider,
-            # YugenSpider,
-            # ZoroSpider
+            AnimePaheSpider,
+            GogoanimeSpider,
+            KatoSpider,
+            NineanimeSpider,
+            YugenSpider,
+            ZoroSpider
         ]
 
     def run_spiders(self):
