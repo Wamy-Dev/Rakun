@@ -18,8 +18,7 @@ class AnimePaheSpider(scrapy.Spider):
             link = f"https://animepahe.ru{anime.attrib['href']}"
 
             animeItem["title"] = title
-            animeItem["link"] = link
+            animeItem["link"] = {"Animepahe":link}
             animeItem["type"] = "Anime"
-            animeItem["source"] = "AnimePahe"
 
             yield animeItem

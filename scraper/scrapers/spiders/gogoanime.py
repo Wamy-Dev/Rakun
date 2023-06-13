@@ -27,9 +27,8 @@ class GogoanimeSpider(scrapy.Spider):
             title = anime.css("::text").get()
             link = anime.attrib["href"]
             animeItem["title"] = title.strip()
-            animeItem["link"] = f"https://gogoanime.hu{link}"
+            animeItem["link"] = {"Gogoanime":f"https://gogoanime.hu{link}"}
             animeItem["type"] = "Anime"
-            animeItem["source"] = "Gogoanime"
             yield animeItem
 
 

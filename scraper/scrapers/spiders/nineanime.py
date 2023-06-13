@@ -23,7 +23,6 @@ class NineanimeSpider(scrapy.Spider):
             title = anime.css("a.name ::text").get()
             link = anime.css("a.name").attrib["href"]
             animeItem["title"] = title
-            animeItem["link"] = f"https://9anime.to{link}"
+            animeItem["link"] = {"9Anime":f"https://9anime.to{link}"}
             animeItem["type"] = "Anime"
-            animeItem["source"] = "9Anime"
             yield animeItem

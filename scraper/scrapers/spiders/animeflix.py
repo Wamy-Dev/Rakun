@@ -24,9 +24,8 @@ class AnimeflixSpider(scrapy.Spider):
                 link = f"https://animeflix.live/watch/{anime['slug']}-episode-1"
                 animeItem = ScrapersItem()
                 animeItem["title"] = title
-                animeItem["link"] = link
+                animeItem["link"] = {"Animeflix":link}
                 animeItem["type"] = "Anime"
-                animeItem["source"] = "Animeflix"
                 yield animeItem
             currentPage += 1
 

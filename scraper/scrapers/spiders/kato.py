@@ -23,9 +23,8 @@ class KatoSpider(scrapy.Spider):
                 link = f"https://kato.to/watch/slug?id=search&malId={anime['malId']}&ep=0"
                 animeItem = ScrapersItem()
                 animeItem["title"] = title
-                animeItem["link"] = link
+                animeItem["link"] = {"Kato":link}
                 animeItem["type"] = "Anime"
-                animeItem["source"] = "Kato"
                 yield animeItem
             currentPage += 1
 

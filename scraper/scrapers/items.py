@@ -20,4 +20,3 @@ class ScrapersItem(scrapy.Item):
     link = scrapy.Field()
     title = scrapy.Field()
     type = scrapy.Field()
-    source = scrapy.Field()

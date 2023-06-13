@@ -25,9 +25,8 @@ class YugenSpider(scrapy.Spider):
             link = f"https://yugenanime.tv{anime.attrib['href']}"
 
             animeItem["title"] = title
-            animeItem["link"] = link
+            animeItem["link"] = {"Yugen":link}
             animeItem["type"] = "Anime"
-            animeItem["source"] = "Yugen"
 
             yield animeItem
 
