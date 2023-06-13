@@ -19,23 +19,24 @@ def combine_item(item):
     title = item.get("title")
     item_type = item.get("type")
     link_data = item.get("link")
-
-    if title is None or item_type is None or link_data is None:
-        return
-
-    link_key, link_value = next(iter(link_data.items()), (None, None))
-
-    if link_key is None or link_value is None:
-        return
+    item_mal_id = item.get("mal_id")
 
     key = json.dumps((title, item_type))
     previous_data = load_from_json()
+
     if key in previous_data:
-        previous_data[key].append(link_value)
+        link_dict = previous_data[key].get("link", {})
+        for source, link in link_data.items():
+            link_dict[source] = link
     else:
-        previous_data[key] = [link_value]
+        previous_data[key] = {
+            "link": link_data
+        }
+
+    if item_mal_id is not None:
+        previous_data[key]["mal_id"] = item_mal_id
+
     save_to_json(previous_data)
-    print("####################################DONE####################################")
 
 
     

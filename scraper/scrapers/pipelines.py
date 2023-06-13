@@ -7,6 +7,8 @@
 # useful for handling different item types with a single interface
 from scrapy.exceptions import NotConfigured
 from .functions.jsonFunc import combine_item
+from .functions.matchFunc import matchName
+import time
 
 class AnimePipeline():
 
@@ -22,8 +24,10 @@ class AnimePipeline():
     def close_spider(self, _):
         pass
     def process_item(self, item, _):
-        combine_item(item)
-        return item
+        time.sleep(1)
+        newItem = matchName(item)
+        combine_item(newItem)
+        return newItem
          
 
 class EroAnimePipeline():
