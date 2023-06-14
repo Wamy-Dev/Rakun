@@ -8,6 +8,7 @@
 from scrapy.exceptions import NotConfigured
 from .functions.jsonFunc import combine_item
 from .functions.matchFunc import matchName
+from .functions.metadataFunc import getMetadata
 
 class AnimePipeline():
 
@@ -18,16 +19,18 @@ class AnimePipeline():
         if not crawler.settings.getbool('ANIMEPIPELINE_ENABLED'):
             raise NotConfigured
         return cls()
-    def open_spider(self, _):
+    def open_spider(self, response):
+        print(f"########### {response} ###########")
+        #send discord notification here
         pass
-    def close_spider(self, _):
+    def close_spider(self, response):
+        print(f"########### {response} ###########")
+        #send discord notification here
         pass
     def process_item(self, item, _):
-        newItem = matchName(item)
-        combine_item(newItem)
+        newItem = getMetadata(combine_item(matchName(item))) # not readable code
         return newItem
          
-
 class EroAnimePipeline():
 
     collection = 'EroAnime'

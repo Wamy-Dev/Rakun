@@ -36,7 +36,8 @@ def combine_item(item):
     if item_mal_id is not None:
         previous_data[key]["mal_id"] = item_mal_id
 
-    save_to_json(previous_data)
+    # save_to_json(previous_data) 
+    return previous_data # Keeping data in the pipeline
 
 
     

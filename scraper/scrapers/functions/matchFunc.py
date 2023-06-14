@@ -24,7 +24,7 @@ def matchName(item):
     item_type = item["type"]
     try:
         search = jikan.search(item_type.lower(), item_title)
-        time.sleep(1)
+        time.sleep(1) # Jikan Public API has a limit of 60 requests per minute. This is to prevent hitting the limit. We will self host our own Jikan API in the future.
         similarTitles = []
         for anime in search["data"]:
             titles = []
