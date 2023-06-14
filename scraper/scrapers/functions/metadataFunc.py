@@ -1,7 +1,7 @@
 from jikanpy import Jikan
 import hashlib
+import requests
 jikan = Jikan()
-
 '''
 An end result should look like this:
 {
@@ -62,8 +62,10 @@ def getMetadata(item):
                 "episodes": [],
                 "trailers": [],
                 "images": [],
-                "nyaarss": f"https://nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0"
+                "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0" if item["type"] == "EroAnime" or item["type"] == "EroManga" else f"https://nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0"
             }
         }
     else:
         return item
+
+
