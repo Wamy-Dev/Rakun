@@ -1,3 +1,8 @@
+<div align="center">
+    <img src="/assets/RakunLogoDark.svg#gh-light-mode-only" height="200">
+    <img src="/assets/RakunLogoLight.svg#gh-dark-mode-only" height="200">
+</div>
+
 # [Rakun.app](https://rakun.app) - The Fastest and Largest Pirated Anime, Manga, Ero-Manga and Ero-Anime Search Engine
 [why does that sound familiar?](https://github.com/Wamy-Dev/ReziWebsite)
 
