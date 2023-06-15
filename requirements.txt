@@ -1,3 +1,4 @@
 scrapy
 jikanpy-v4
 fuzzywuzzy[speedup]
+dotenv

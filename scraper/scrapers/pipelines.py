@@ -28,7 +28,8 @@ class AnimePipeline():
         #send discord notification here
         pass
     def process_item(self, item, _):
-        newItem = getMetadata(combine_item(matchName(item))) # not readable code
+        # newItem = getMetadata(combine_item(matchName(item))) # not readable code
+        newItem = combine_item(matchName(item))
         return newItem
          
 class EroAnimePipeline():
