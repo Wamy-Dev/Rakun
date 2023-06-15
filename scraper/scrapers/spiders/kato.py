@@ -12,7 +12,7 @@ class KatoSpider(scrapy.Spider):
 
     def parse(self, _):
         # uses the api to get the anime list
-        prelimData = requests.get(f"https://c.delusionz.xyz/meta/anilist/advanced-search").json()
+        prelimData = requests.get("https://c.delusionz.xyz/meta/anilist/advanced-search").json()
         totalPages = prelimData["totalPages"]
         currentPage = 0
 

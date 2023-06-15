@@ -10,7 +10,7 @@ class AnimePaheSpider(scrapy.Spider):
     }
 
     def parse(self, response):
-        # Doesn't need to worry about pagination as it is all there, just hidden by javascript
+        # Doesn't need to worry about pagination as it is all there
         animeList = response.css("div.tab-pane div.col-12 a")
         animeItem = ScrapersItem()
         for anime in animeList:

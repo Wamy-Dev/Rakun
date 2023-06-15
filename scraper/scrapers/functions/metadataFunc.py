@@ -1,6 +1,6 @@
 from jikanpy import Jikan
 import hashlib
-import requests
+
 jikan = Jikan()
 '''
 An end result should look like this:
@@ -23,7 +23,7 @@ An end result should look like this:
         "score": "SCORE",
         "rank": "RANK",
         "status": "STATUS",
-        "episodes": "EPISODES",
+        "episodes_num": "EPISODES",
         "aired": "AIRED",
         "external_links": ["EXTERNAL_LINKS", "EXTERNAL_LINKS"],
         "episodes": [{
@@ -59,10 +59,10 @@ def getMetadata(item):
                 "episodes": -1,
                 "aired": "",
                 "external_links": [],
-                "episodes": [],
+                "episodes_num": [],
                 "trailers": [],
                 "images": [],
-                "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0" if item["type"] == "EroAnime" or item["type"] == "EroManga" else f"https://nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0"
+                "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0" if item["type"] == "EroAnime" or item["type"] == "EroManga" else f"https://nyaa.si/?page=rss&q={item['title']}&c=0_0&f=0"  # noqa: E501
             }
         }
     else:

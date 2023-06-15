@@ -11,7 +11,7 @@ class NineanimeSpider(scrapy.Spider):
 
     def parse(self, response):
         # get the link
-        totalPages = response.css("li.page-item a.page-link")[-1].attrib["href"].split("=")[-1]
+        totalPages = response.css("li.page-item a.page-link")[-1].attrib["href"].split("=")[-1]  # noqa: E501
         currentPage = response.css("li.active span.page-link ::text").get()
         if totalPages and currentPage:
             if int(currentPage) == 1:

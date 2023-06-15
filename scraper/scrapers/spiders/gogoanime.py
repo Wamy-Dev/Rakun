@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 class GogoanimeSpider(scrapy.Spider):
     name = 'gogoanime'
-    allowed_domains = ["gogoanime.lu", "gogoanime.bid", "gogoanime.dk", "gogoanime.tel", "gogoanime.ar", "gogoanime.pe", "gogoanime.vc", "gogoanime.cl", "gogoanime.hu"]
+    allowed_domains = ["gogoanime.lu", "gogoanime.bid", "gogoanime.dk", "gogoanime.tel", "gogoanime.ar", "gogoanime.pe", "gogoanime.vc", "gogoanime.cl", "gogoanime.hu"]  # noqa: E501
     start_urls = ["https://gogoanime.hu/anime-list.html"]
     custom_settings = {
         "ANIMEPIPELINE_ENABLED": True,
