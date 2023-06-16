@@ -8,7 +8,6 @@
 from scrapy.exceptions import NotConfigured
 from .functions.jsonFunc import combine_item
 from .functions.matchFunc import matchName
-from .functions.metadataFunc import getMetadata
 
 class AnimePipeline():
 
