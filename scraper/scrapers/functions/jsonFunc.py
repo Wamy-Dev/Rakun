@@ -14,7 +14,12 @@ def load_from_json():
                 return {}
     else:
         return {}
-
+def delete_json():
+    if os.path.exists("results.json"):
+        os.remove("results.json")
+        return True
+    else:
+        return False
 def combine_item(item):
     title = item.get("title")
     item_type = item.get("type")

@@ -1,3 +1,4 @@
+import logging
 BOT_NAME = 'scrapers'
 SPIDER_MODULES = ['scrapers.spiders']
 NEWSPIDER_MODULE = 'scrapers.spiders'
@@ -23,3 +24,6 @@ EROANIMEPIPELINE_ENABLED = False
 MANGAPIPELINE_ENABLED = False
 EROMANGAPIPELINE_ENABLED = False
 
+LOG_ENABLED = False
+logger = logging.getLogger('scrapy')
+logger.setLevel(logging.WARNING)

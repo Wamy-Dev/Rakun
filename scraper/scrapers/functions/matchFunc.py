@@ -43,7 +43,7 @@ def addToCache(item):
             "webtitle": item["webtitle"],
             "mal_id": item["mal_id"]
         })
-        print("####################### ADDED IN CACHE")
+        print(f"########### CACHE ADD: {item_title}, {item_type}, {item['mal_id']}")
     except Exception as e:
         print(e)
         return False
@@ -67,7 +67,7 @@ def matchName(item):
     item_type = item["type"]
     cache = checkCache(item)
     if cache:
-        print("####################### FOUND IN CACHE")
+        print(f"########### CACHE HIT: {item_title}, {item_type}, {cache['mal_id']}")
         return cache
     else:
         try:
@@ -101,7 +101,7 @@ def matchName(item):
                     "mal_id": best_title["mal_id"]
                 }
         except Exception as e:
-            print(e)
+            print("ERROR" + e)
             return {
                 "title": item_title,
                 "type": item_type,

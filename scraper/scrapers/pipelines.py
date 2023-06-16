@@ -20,11 +20,11 @@ class AnimePipeline():
             raise NotConfigured
         return cls()
     def open_spider(self, response):
-        print(f"########### {response} ###########")
+        print(f"########### STARTED {response}")
         #send discord notification here
         pass
     def close_spider(self, response):
-        print(f"########### {response} ###########")
+        print(f"########### FINISHED {response}")
         #send discord notification here
         pass
     def process_item(self, item, _):
