@@ -55,8 +55,8 @@ def getAnilistID(mal_id, item_type):
         return None
 def getStreamingLinks(data, links):
     streaming_links = []
-    for previous_link in links:
-        streaming_links.append(previous_link)
+    for key, value in links.items():
+        streaming_links.append({key: value})
     if data:
         for link in data:
             source = link["name"]
@@ -78,7 +78,6 @@ def getCharactersVoiceActors(mal_id, item_type):
         time.sleep(1)
         for character in characters_data:
             characters.append(character["character"]["name"])
-
     return {
         "characters": characters,
         "voice_actors": voice_actors
@@ -137,7 +136,8 @@ def getJikanMetadata(mal_id, item_type, links):
         data["score"] = metadata["data"]["score"]
         data["rank"] = metadata["data"]["rank"]
         data["status"] = metadata["data"]["status"]
-        data["episodes"] = getEpisodes(mal_id, item_type)
+        # data["episodes"] = getEpisodes(mal_id, item_type)
+        data["episodes"] = []
         data["aired"] = metadata["data"]["aired"]
         data["external_links"] = metadata["data"]["external"]
         data["episodes_num"] = metadata["data"]["episodes"]

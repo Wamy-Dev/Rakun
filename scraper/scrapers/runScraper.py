@@ -2,7 +2,10 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 import os
 import json
-from datetime import datetime
+from pymongo import MongoClient
+from appConfig import MONGODB_CONNECTION_URI
+client = MongoClient(MONGODB_CONNECTION_URI)
+db = client["scraper"]
 # Anime
 from .spiders.animeflix import AnimeflixSpider
 from .spiders.animepahe import AnimePaheSpider
@@ -42,18 +45,17 @@ class Scraper:
                 data = json.load(file)
             except json.JSONDecodeError:
                 return False
-        with open("process-results.json", "w+") as anime_results:
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            anime_results.write('{"data":[')
-            is_first_item = True
-            for key, value in data.items():
-                data = getMetadata(key, value)
-                if is_first_item:
-                    is_first_item = False
-                else:
-                    anime_results.write(',')
-                json.dump(data, anime_results, indent=4)
-            anime_results.write(f'],"last_run":"{timestamp}"}}')
+        for key, value in data.items():
+            item_type = eval(key)[1]
+            database = db[item_type]
+            item = getMetadata(key, value)
+            if database.find_one({"mal_id": item["mal_id"]}) is None:
+                database.insert_one(item)
+                print(f"########### DATABASE ADD: {item['title']}, {item_type}, {item['mal_id']}")
+            else:
+                #update item
+                database.update_one({"mal_id": item["mal_id"]}, {"$set": item})
+                print(f"########### DATABASE UPDATE: {item['title']}, {item_type}, {item['mal_id']}")
         return True
     def upload(self):
         pass
