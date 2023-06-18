@@ -4,8 +4,6 @@ import os
 import json
 from pymongo import MongoClient
 from appConfig import MONGODB_CONNECTION_URI
-client = MongoClient(MONGODB_CONNECTION_URI)
-db = client["scraper"]
 # Anime
 from .spiders.animeflix import AnimeflixSpider
 from .spiders.animepahe import AnimePaheSpider
@@ -15,9 +13,12 @@ from .spiders.nineanime import NineanimeSpider
 from .spiders.yugen import YugenSpider
 from .spiders.zoro import ZoroSpider
 
+
+# Functions
 from .functions.metadataFunc import getMetadata
 
-
+client = MongoClient(MONGODB_CONNECTION_URI)
+db = client["scraper"]
 
 class Scraper:
     def __init__(self):
@@ -46,16 +47,20 @@ class Scraper:
             except json.JSONDecodeError:
                 return False
         for key, value in data.items():
-            item_type = eval(key)[1]
-            database = db[item_type]
-            item = getMetadata(key, value)
-            if database.find_one({"title": item["title"]}) is None:
-                database.insert_one(item)
-                print(f"########### DATABASE ADD: {item['title']}, {item_type}, {item['mal_id']}")
-            else:
-                #update item
-                database.update_one({"title": item["title"]}, {"$set": item})
-                print(f"########### DATABASE UPDATE: {item['title']}, {item_type}, {item['mal_id']}")
+            try:
+                item_type = eval(key)[1]
+                database = db[item_type]
+                item = getMetadata(key, value)
+                if database.find_one({"title": item["title"]}) is None:
+                    database.insert_one(item)
+                    print(f"########### DATABASE ADD: {item['title']}, {item_type}, {item['mal_id']}")
+                else:
+                    #update item
+                    database.update_one({"title": item["title"]}, {"$set": item})
+                    print(f"########### DATABASE UPDATE: {item['title']}, {item_type}, {item['mal_id']}")
+            except Exception as e:
+                print(f"########### METADB ERROR: {e}")
+                continue
         return True
     def upload(self):
         pass

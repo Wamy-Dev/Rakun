@@ -50,8 +50,8 @@ def getAnilistID(mal_id, item_type):
         }
         ani_id = requests.post("https://graphql.anilist.co", json={"query": query, "variables": variables}).json()["data"]["Media"]["id"]
         return ani_id
-    except Exception as e:
-        print(e)
+    except:
+        print(f"########### ANI ID META ERROR: ID cannot be found for {mal_id}.")
         return None
 def getStreamingLinks(data, links):
     streaming_links = []
@@ -136,8 +136,7 @@ def getJikanMetadata(mal_id, item_type, links):
         data["score"] = metadata["data"]["score"]
         data["rank"] = metadata["data"]["rank"]
         data["status"] = metadata["data"]["status"]
-        # data["episodes"] = getEpisodes(mal_id, item_type)
-        data["episodes"] = []
+        data["episodes"] = getEpisodes(mal_id, item_type)
         data["aired"] = metadata["data"]["aired"]
         data["external_links"] = metadata["data"]["external"]
         data["episodes_num"] = metadata["data"]["episodes"]
@@ -153,7 +152,7 @@ def getJikanMetadata(mal_id, item_type, links):
         data["content_type"] = metadata["data"]["type"]
         return data
     except Exception as e:
-        print(e)
+        print(f"########### JIKAN META ERROR: {e}")
         return None
 def getMetadata(keys, item):
     # get the keys of the item to access the data
