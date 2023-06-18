@@ -50,7 +50,7 @@ def getAnilistID(mal_id, item_type):
         }
         ani_id = requests.post("https://graphql.anilist.co", json={"query": query, "variables": variables}).json()["data"]["Media"]["id"]
         return ani_id
-    except:
+    except Exception:
         print(f"########### ANI ID META ERROR: ID cannot be found for {mal_id}.")
         return None
 def getStreamingLinks(data, links):

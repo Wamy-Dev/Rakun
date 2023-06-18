@@ -1,5 +1,5 @@
 from scrapers.runScraper import Scraper
-from scrapers.functions.jsonFunc import delete_json 
+from scrapers.functions.jsonFunc import delete_json # noqa F401
 
 # delete_json()
 scraper = Scraper()

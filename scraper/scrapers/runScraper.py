@@ -51,13 +51,20 @@ class Scraper:
                 item_type = eval(key)[1]
                 database = db[item_type]
                 item = getMetadata(key, value)
-                if database.find_one({"title": item["title"]}) is None:
+                old_item = database.find_one({"title": item["title"]})
+                if old_item is None:
                     database.insert_one(item)
-                    print(f"########### DATABASE ADD: {item['title']}, {item_type}, {item['mal_id']}")
+                    print(f"########### DATABASE ADD: {item['title']}, {item['type']}, {item['mal_id']}")
                 else:
-                    #update item
-                    database.update_one({"title": item["title"]}, {"$set": item})
-                    print(f"########### DATABASE UPDATE: {item['title']}, {item_type}, {item['mal_id']}")
+                    if item["mal_id"] is None and old_item["mal_id"] is None:
+                        print(f"########### DATABASE SKIP: {item['title']}, {item['type']}, {item['mal_id']} ")
+                        pass
+                    elif item["mal_id"] == old_item["mal_id"] is not None and item["mal_id"] is not None:
+                        database.update_one({"title": item["title"]}, {"$set": item})
+                        print(f"########### DATABASE UPDATE: {item['title']}, {item['type']}, {item['mal_id']}")
+                    elif item["mal_id"] is not None and old_item["mal_id"] is None:
+                        database.update_one({"title": item["title"]}, {"$set": item})
+                        print(f"########### DATABASE UPDATE: {item['title']}, {item['type']}, {item['mal_id']}")
             except Exception as e:
                 print(f"########### METADB ERROR: {e}")
                 continue
