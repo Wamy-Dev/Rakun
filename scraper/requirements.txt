@@ -1,4 +1,6 @@
 scrapy
 jikanpy-v4
 fuzzywuzzy[speedup]
-dotenv
+python-dotenv
+pymongo
+beautifulsoup4
