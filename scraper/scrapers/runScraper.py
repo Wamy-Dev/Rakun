@@ -49,12 +49,12 @@ class Scraper:
             item_type = eval(key)[1]
             database = db[item_type]
             item = getMetadata(key, value)
-            if database.find_one({"mal_id": item["mal_id"]}) is None:
+            if database.find_one({"title": item["title"]}) is None:
                 database.insert_one(item)
                 print(f"########### DATABASE ADD: {item['title']}, {item_type}, {item['mal_id']}")
             else:
                 #update item
-                database.update_one({"mal_id": item["mal_id"]}, {"$set": item})
+                database.update_one({"title": item["title"]}, {"$set": item})
                 print(f"########### DATABASE UPDATE: {item['title']}, {item_type}, {item['mal_id']}")
         return True
     def upload(self):
