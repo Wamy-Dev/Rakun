@@ -20,7 +20,16 @@ from .functions.metadataFunc import getMetadata
 
 client = MongoClient(MONGODB_CONNECTION_URI)
 db = client["scraper"]
-
+def createKey():
+   searchclient = meilisearch.Client(MEILISEARCH_HOST, MEILISEARCH_API_KEY) 
+   key = searchclient.create_key(
+       options={
+            'description':"PUBLIC SEARCH KEY",
+            'actions': ['search','indexes.get','documents.get','stats.get','version'],
+            'indexes': ['*'],
+            'expiresAt': None
+       })
+   print(key)
 def getTasks():
     searchclient = meilisearch.Client(MEILISEARCH_HOST, MEILISEARCH_API_KEY)
     return searchclient.get_tasks()
