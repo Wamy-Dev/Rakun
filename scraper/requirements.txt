@@ -4,3 +4,4 @@ fuzzywuzzy[speedup]
 python-dotenv
 pymongo
 beautifulsoup4
+meilisearch

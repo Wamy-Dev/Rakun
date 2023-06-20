@@ -3,7 +3,9 @@ from scrapy.utils.project import get_project_settings
 import os
 import json
 from pymongo import MongoClient
-from appConfig import MONGODB_CONNECTION_URI
+from appConfig import MONGODB_CONNECTION_URI, MEILISEARCH_API_KEY, MEILISEARCH_HOST
+import meilisearch
+
 # Anime
 from .spiders.animeflix import AnimeflixSpider
 from .spiders.animepahe import AnimePaheSpider
@@ -13,13 +15,49 @@ from .spiders.nineanime import NineanimeSpider
 from .spiders.yugen import YugenSpider
 from .spiders.zoro import ZoroSpider
 
-
 # Functions
 from .functions.metadataFunc import getMetadata
 
 client = MongoClient(MONGODB_CONNECTION_URI)
 db = client["scraper"]
 
+def getTasks():
+    searchclient = meilisearch.Client(MEILISEARCH_HOST, MEILISEARCH_API_KEY)
+    return searchclient.get_tasks()
+def setupMeilisearch(type):
+    searchclient = meilisearch.Client(MEILISEARCH_HOST, MEILISEARCH_API_KEY)
+    searchclient.create_index(type, {'primaryKey': 'id'})
+    searchclient.index(type).update(primary_key="id")
+    index = searchclient.index(type)
+    index.delete_all_documents()
+    if type == "Anime":
+        # update searchable attributes
+        index.update_settings({
+            "distinctAttribute": "id",
+            "searchableAttributes": [
+                "title",
+                "titles",
+                "mal_id",
+                "ani_id",
+                "metadata.tags",
+                "metadata.episodes",
+                "metadata.characters",
+                "metadata.voice_actors",
+                "metadata.studios",
+            ],
+            "displayedAttributes": [
+                "title",
+                "titles",
+                "mal_id",
+                "ani_id",
+                "link",
+                "metadata"
+            ]
+        })
+    return index
+def getAllMongo(type):
+    database = db[type]
+    return database.find({})
 class Scraper:
     def __init__(self):
         settings_file_path = 'scrapers.settings'
@@ -70,8 +108,18 @@ class Scraper:
                 continue
         return True
     def upload(self):
-        pass
-
+        collections = ["Anime", "EroAnime", "Manga", "EroManga"]
+        for collection in collections:
+            index = setupMeilisearch(collection)
+            data = getAllMongo(collection)
+            items = []
+            for item in data:
+                item.pop("_id")
+                item["poster"] = item["metadata"]["poster"]
+                items.append(item)
+            process = index.add_documents(items)
+            print(process)
+            print(f"########### MEILISEARCH UPLOAD: {collection}")
 
 
 
