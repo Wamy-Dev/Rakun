@@ -28,6 +28,7 @@ There will be, eventually.
 - [x] Yugen
 - [x] Zoro
 - [ ] KickAssAnimes
+- [ ] Marin
 
 ### Current Sources (Ero-Anime):
 - [ ] HAnime
