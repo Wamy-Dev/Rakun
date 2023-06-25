@@ -55,12 +55,7 @@ def setupMeilisearch(type):
                 "metadata.studios",
             ],
             "displayedAttributes": [
-                "title",
-                "titles",
-                "mal_id",
-                "ani_id",
-                "link",
-                "metadata"
+                "*",
             ]
         })
     return index
@@ -98,7 +93,7 @@ class Scraper:
                 item_type = eval(key)[1]
                 database = db[item_type]
                 item = getMetadata(key, value)
-                old_item = database.find_one({"title": item["title"]})
+                old_item = database.find_one({"mal_id": item["mal_id"]})
                 if old_item is None:
                     database.insert_one(item)
                     print(f"########### DATABASE ADD: {item['title']}, {item['type']}, {item['mal_id']}")
@@ -107,7 +102,7 @@ class Scraper:
                         print(f"########### DATABASE SKIP: {item['title']}, {item['type']}, {item['mal_id']} ")
                         pass
                     elif item["mal_id"] == old_item["mal_id"] is not None and item["mal_id"] is not None:
-                        database.update_one({"title": item["title"]}, {"$set": item})
+                        database.update_one({"mal_id": item["mal_id"]}, {"$set": item})
                         print(f"########### DATABASE UPDATE: {item['title']}, {item['type']}, {item['mal_id']}")
                     elif item["mal_id"] is not None and old_item["mal_id"] is None:
                         database.update_one({"title": item["title"]}, {"$set": item})
