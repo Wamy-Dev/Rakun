@@ -17,7 +17,8 @@ Originally this project was simply a pretty frontend for https://github.com/lowl
 by @lowlighter. This project naturally(?) evolved into what it is today, a pirated search engine for all different types of content and the name just stuck.
 
 # Is there an API?
-There will be, eventually.
+Yes! You can view the documentation [here](https://docs.rakun.app). There are other things in the docs like best searching practices, sources as well as the full API documentation.
+
 # Sources
 ### Current Sources (Anime):
 - [x] Animeflix
