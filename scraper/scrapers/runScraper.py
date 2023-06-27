@@ -35,6 +35,7 @@ def getTasks():
     return searchclient.get_tasks()
 def setupMeilisearch(type):
     searchclient = meilisearch.Client(MEILISEARCH_HOST, MEILISEARCH_API_KEY)
+    searchclient.delete_index(type)
     searchclient.create_index(type, {'primaryKey': 'id'})
     searchclient.index(type).update(primary_key="id")
     index = searchclient.index(type)
