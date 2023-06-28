@@ -16,6 +16,11 @@ from .spiders.yugen import YugenSpider
 from .spiders.zoro import ZoroSpider
 from .spiders.marin import MarinSpider
 
+# Manga
+from .spiders.comick import ComickSpider
+from .spiders.mangadex import MangadexSpider
+from .spiders.mangafox import MangafoxSpider
+
 # Functions
 from .functions.metadataFunc import getMetadata
 

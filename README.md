@@ -28,7 +28,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] 9Anime
 - [x] Yugen
 - [x] Zoro
-- [x] Marin
+- [x] Marin (using MalSyncBackup)
 - [ ] KickAssAnimes
 
 ### Current Sources (Ero-Anime):
@@ -40,14 +40,17 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [ ] Oppai
 
 ### Current Sources (Manga):
-- [ ] MangaDex
-- [ ] Comick
+- [x] MangaDex
+- [x] Comick
 - [ ] MangaReader
-- [ ] FanFox
+- [x] MangaFox
 - [ ] Bato
 - [ ] Serimanga
+- [ ] MangaFire (using MalSyncBackup)
+- [ ] MangaNato (using MalSyncBackup)
+- [ ] MangaSee (using MalSyncBackup)
 
-### Current Source (Ero-Manga):
+### Current Sources (Ero-Manga):
 - [ ] Doujins
 - [ ] NHentai
 - [ ] Pururin
