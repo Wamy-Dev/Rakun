@@ -1,6 +1,4 @@
-import requests
 import scrapy
-import zipfile
 from scrapers.items import ScrapersItem
 import os
 import json
