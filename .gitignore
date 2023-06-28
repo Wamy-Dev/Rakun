@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 results.json
 process-results.json
+malSyncData
+master.zip
