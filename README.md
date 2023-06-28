@@ -28,8 +28,8 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] 9Anime
 - [x] Yugen
 - [x] Zoro
+- [x] Marin
 - [ ] KickAssAnimes
-- [ ] Marin
 
 ### Current Sources (Ero-Anime):
 - [ ] HAnime
