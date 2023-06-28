@@ -14,6 +14,7 @@ from .spiders.kato import KatoSpider
 from .spiders.nineanime import NineanimeSpider
 from .spiders.yugen import YugenSpider
 from .spiders.zoro import ZoroSpider
+from .spiders.marin import MarinSpider
 
 # Functions
 from .functions.metadataFunc import getMetadata
@@ -74,9 +75,10 @@ class Scraper:
             AnimePaheSpider,
             GogoanimeSpider,
             KatoSpider,
+            MarinSpider,
             NineanimeSpider,
             YugenSpider,
-            ZoroSpider
+            ZoroSpider,
         ]
 
     def run_spiders(self):
