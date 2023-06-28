@@ -80,7 +80,7 @@ def matchName(item):
                     titles.append({"title": title["title"], "mal_id": anime["mal_id"]})
                 similarTitles.append(getMaxSimilarity(item_title, titles))
             best_title = getMaxSimilarity(item_title, similarTitles)
-            if best_title["title"] is None:
+            if best_title is None:
                 print(f"########### CACHE MISS: {item_title}, {item_type}, None")
                 return {
                     "title": item_title,
@@ -89,14 +89,19 @@ def matchName(item):
                     "mal_id": None
                 }
             else:
+                if item_type == "Anime" or item_type == "EroAnime":
+                    data = jikan.anime(best_title["mal_id"])
+                elif item_type == "Manga" or item_type == "EroManga":
+                    data = jikan.manga(best_title["mal_id"])
+                title = data["data"]["title"]
                 addToCache({
-                    "title": best_title["title"],
+                    "title": title,
                     "webtitle": item_title,
                     "type": item_type,
                     "mal_id": best_title["mal_id"]
                 })
                 return {
-                    "title": best_title["title"],
+                    "title": title,
                     "type": item_type,
                     "link": item["link"],
                     "mal_id": best_title["mal_id"]

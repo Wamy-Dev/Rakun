@@ -112,7 +112,7 @@ class Scraper:
                 continue
         return True
     def upload(self):
-        collections = ["Anime", "EroAnime", "Manga", "EroManga"]
+        collections = ["Anime"]
         for collection in collections:
             index = setupMeilisearch(collection)
             data = getAllMongo(collection)
