@@ -57,7 +57,7 @@ def getMaxSimilarity(item_title, titles):
         similarity = fuzz.token_sort_ratio(item_title, title["title"])
         if similarity == 100:
             return {"title":title["title"], "mal_id":title["mal_id"]}
-        if similarity < 50:
+        if similarity < 80:
             continue
         if similarity > max_similarity:
             max_similarity = similarity
@@ -83,6 +83,7 @@ def matchName(item):
                     titles.append({"title": title["title"], "mal_id": anime["mal_id"]})
                 similarTitles.append(getMaxSimilarity(item_title, titles))
             best_title = getMaxSimilarity(item_title, similarTitles)
+            print(best_title)
             if best_title is None:
                 print(f"########### CACHE MISS: {item_title}, {item_type}, None")
                 return {
@@ -97,12 +98,12 @@ def matchName(item):
                 elif item_type == "Manga" or item_type == "EroManga":
                     data = jikan.manga(best_title["mal_id"])
                 title = data["data"]["title"]
-                addToCache({
-                    "title": title,
-                    "webtitle": item_title,
-                    "type": item_type,
-                    "mal_id": best_title["mal_id"]
-                })
+                # addToCache({
+                #     "title": title,
+                #     "webtitle": item_title,
+                #     "type": item_type,
+                #     "mal_id": best_title["mal_id"]
+                # })
                 return {
                     "title": title,
                     "type": item_type,
