@@ -42,7 +42,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 ### Current Sources (Manga):
 - [x] MangaDex
 - [x] Comick
-- [ ] MangaReader
+- [x] MangaReader
 - [x] MangaFox
 - [ ] Bato
 - [ ] Serimanga

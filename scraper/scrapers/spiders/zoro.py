@@ -18,8 +18,7 @@ class ZoroSpider(scrapy.Spider):
         if totalPages and currentPage:
             if int(currentPage) == 1:
                 for pageNumber in range(2, int(totalPages) + 1):
-                    yield scrapy.Request(
-                        url=f"https://zoro.to/az-list?page={pageNumber}")
+                    yield scrapy.Request(url=f"https://zoro.to/az-list?page={pageNumber}")
                     
         animeList = response.css("a.dynamic-name")
         animeItem = ScrapersItem()
