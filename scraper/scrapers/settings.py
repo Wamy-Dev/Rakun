@@ -24,6 +24,6 @@ EROANIMEPIPELINE_ENABLED = False
 MANGAPIPELINE_ENABLED = False
 EROMANGAPIPELINE_ENABLED = False
 
-# LOG_ENABLED = False
-# logger = logging.getLogger('scrapy')
-# logger.setLevel(logging.WARNING)
+LOG_ENABLED = False
+logger = logging.getLogger('scrapy')
+logger.setLevel(logging.WARNING)

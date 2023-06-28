@@ -36,5 +36,5 @@ class MangaseeSpider(scrapy.Spider):
                     mangaItem["type"] = "Manga"
                     yield mangaItem
                 f.close()
-            except:
+            except Exception:
                 pass

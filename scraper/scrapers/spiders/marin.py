@@ -36,7 +36,7 @@ class MarinSpider(scrapy.Spider):
                     animeItem["type"] = "Anime"
                     yield animeItem
                 f.close()
-            except:
+            except Exception:
                 pass
 
 
