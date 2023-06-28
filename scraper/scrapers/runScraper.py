@@ -17,9 +17,15 @@ from .spiders.zoro import ZoroSpider
 from .spiders.marin import MarinSpider
 
 # Manga
-from .spiders.comick import ComickSpider
 from .spiders.mangadex import MangadexSpider
+from .spiders.comick import ComickSpider
+from .spiders.mangareader import MangareaderSpider
 from .spiders.mangafox import MangafoxSpider
+from .spiders.bato import BatoSpider
+from .spiders.serimanga import SerimangaSpider
+from .spiders.mangafire import MangafireSpider
+from .spiders.manganato import ManganatoSpider
+from .spiders.mangasee import MangaseeSpider
 
 # Functions
 from .functions.metadataFunc import getMetadata
@@ -84,6 +90,15 @@ class Scraper:
             NineanimeSpider,
             YugenSpider,
             ZoroSpider,
+            MangadexSpider,
+            ComickSpider,
+            MangareaderSpider,
+            MangafoxSpider,
+            BatoSpider,
+            SerimangaSpider,
+            MangafireSpider,
+            ManganatoSpider,
+            MangaseeSpider,
         ]
 
     def run_spiders(self):
@@ -120,7 +135,7 @@ class Scraper:
                 continue
         return True
     def upload(self):
-        collections = ["Anime"]
+        collections = ["Anime", "Manga"]
         for collection in collections:
             index = setupMeilisearch(collection)
             data = getAllMongo(collection)
