@@ -46,7 +46,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] MangaFox
 - [ ] Bato
 - [x] Serimanga
-- [ ] MangaFire (using MalSyncBackup)
+- [x] MangaFire (using MalSyncBackup)
 - [ ] MangaNato (using MalSyncBackup)
 - [ ] MangaSee (using MalSyncBackup)
 

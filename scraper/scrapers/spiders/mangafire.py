@@ -5,12 +5,12 @@ from scrapers.items import ScrapersItem
 import os
 import json
 
-class MarinSpider(scrapy.Spider):
-    name = "marin"
+class MangafireSpider(scrapy.Spider):
+    name = "mangafire"
     allowed_domains = ["homeonacloud.com"]
     start_urls = ["https://homeonacloud.com"]
     custom_settings = {
-        "ANIMEPIPELINE_ENABLED": True,
+        "MANGAPIPELINE_ENABLED": True,
     }
 
     def parse(self, _):
@@ -24,21 +24,17 @@ class MarinSpider(scrapy.Spider):
             with zipfile.ZipFile("master.zip", "r") as zip_ref:
                 zip_ref.extractall("malSyncData")
             zip_ref.close()
-        files = os.listdir("malSyncData/MAL-Sync-Backup-master/data/pages/Marin")
-        animeItem = ScrapersItem()
+        files = os.listdir("malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire")
+        mangaItem = ScrapersItem()
         for file in files:
             #open each json file
             try:
-                with open(f"malSyncData/MAL-Sync-Backup-master/data/pages/Marin/{file}", "r") as f:
+                with open(f"malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire/{file}", "r") as f:
                     data = json.load(f)
-                    animeItem["title"] = data["title"]
-                    animeItem["link"] = {"Marin": data["url"]}
-                    animeItem["type"] = "Anime"
-                    yield animeItem
+                    mangaItem["title"] = data["title"]
+                    mangaItem["link"] = {"MangaFire": data["url"]}
+                    mangaItem["type"] = "Manga"
+                    yield mangaItem
                 f.close()
             except:
                 pass
-
-
-
-

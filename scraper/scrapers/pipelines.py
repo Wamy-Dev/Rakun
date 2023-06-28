@@ -66,6 +66,7 @@ class MangaPipeline():
     def process_item(self, item, _):
         newItem = combine_item(matchName(item))
         return newItem
+        # return item
 
 class EroMangaPipeline():
     
