@@ -93,17 +93,17 @@ def matchName(item):
                     "mal_id": None
                 }
             else:
-                if item_type == "Anime" or item_type == "EroAnime":
+                if item_type == "Anime" or item_type == "Eroanime":
                     data = jikan.anime(best_title["mal_id"])
-                elif item_type == "Manga" or item_type == "EroManga":
+                elif item_type == "Manga" or item_type == "Eromanga":
                     data = jikan.manga(best_title["mal_id"])
                 title = data["data"]["title"]
-                # addToCache({
-                #     "title": title,
-                #     "webtitle": item_title,
-                #     "type": item_type,
-                #     "mal_id": best_title["mal_id"]
-                # })
+                addToCache({
+                    "title": title,
+                    "webtitle": item_title,
+                    "type": item_type,
+                    "mal_id": best_title["mal_id"]
+                })
                 return {
                     "title": title,
                     "type": item_type,
