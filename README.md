@@ -28,7 +28,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] 9Anime
 - [x] Yugen
 - [x] Zoro
-- [x] Marin (using MalSyncBackup)
+- [x] Marin [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/Marin)
 - [ ] KickAssAnimes
 
 ### Current Sources (Ero-Anime):
@@ -40,15 +40,15 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [ ] Oppai
 
 ### Current Sources (Manga):
-- [x] MangaDex
+- [x] MangaDex [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/Mangadex)
 - [x] Comick
 - [x] MangaReader
 - [x] MangaFox
 - [ ] Bato
 - [x] Serimanga
-- [x] MangaFire (using MalSyncBackup)
-- [x] MangaNato (using MalSyncBackup)
-- [ ] MangaSee (using MalSyncBackup)
+- [x] MangaFire [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/MangaFire)
+- [x] MangaNato [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/MangaNato)
+- [ ] MangaSee [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/MangaSee)
 
 ### Current Sources (Ero-Manga):
 - [ ] Doujins

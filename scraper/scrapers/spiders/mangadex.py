@@ -1,57 +1,41 @@
-import scrapy
-from scrapers.items import ScrapersItem
 import requests
-from datetime import datetime
-import time
-
-# https://api.mangadex.org/docs/
-# https://api.mangadex.org/docs/swagger.html
+import scrapy
+import zipfile
+from scrapers.items import ScrapersItem
+import os
+import json
 
 class MangadexSpider(scrapy.Spider):
     name = "mangadex"
-    allowed_domains = ["mangadex.org"]
+    allowed_domains = ["homeonacloud.com"]
+    start_urls = ["https://homeonacloud.com"]
     custom_settings = {
-        'MANGAPIPELINE_ENABLED': True
+        "MANGAPIPELINE_ENABLED": True,
     }
-    start_urls = ["https://mangadex.org"]
 
     def parse(self, _):
-        currentYear = datetime.now().year
+        if (os.path.exists("malSyncData")):
+            pass
+        else:
+            file = requests.get("https://github.com/MALSync/MAL-Sync-Backup/archive/refs/heads/master.zip")
+            with open("master.zip", "wb") as f:
+                f.write(file.content)
+            f.close()
+            with zipfile.ZipFile("master.zip", "r") as zip_ref:
+                zip_ref.extractall("malSyncData")
+            zip_ref.close()
+        files = os.listdir("malSyncData/MAL-Sync-Backup-master/data/pages/Mangadex")
         mangaItem = ScrapersItem()
-        for year in range(1928, currentYear + 1):
-            offset = 0
-            limit = 100
-            valid = True
-            while valid:
-                mangaData = requests.get(
-                    f"https://api.mangadex.org/manga?limit={limit}&offset={offset}&hasAvailableChapters=true&year={year}"
-                )
-                if mangaData.ok:
-                    data = mangaData.json()
-                    total = data["total"]
-                    if total == 0:
-                        valid = False
-                    else:
-                        scraped = 0
-                        for manga in data["data"]:
-                            try:
-                                id = manga["id"]
-                                attributes = manga["attributes"]
-                                title = attributes["title"]["en"]
-                                slug = attributes["links"]["ap"]
-                                mangaItem["title"] = title
-                                mangaItem["link"] = {"MangaDex": f"https://mangadex.org/title/{id}/{slug}"}
-                                mangaItem["type"] = "Manga"
-                                yield mangaItem
-                                scraped += 1
-                            except:
-                                scraped += 1
-                                continue
-                        if scraped == limit:
-                            offset += limit
-                        if total == scraped:
-                            valid = False
-                else:
-                    valid = False
-                time.sleep(1)
+        for file in files:
+            #open each json file
+            try:
+                with open(f"malSyncData/MAL-Sync-Backup-master/data/pages/Mangadex/{file}", "r") as f:
+                    data = json.load(f)
+                    mangaItem["title"] = data["title"]
+                    mangaItem["link"] = {"Mangadex": data["url"]}
+                    mangaItem["type"] = "Manga"
+                    yield mangaItem
+                f.close()
+            except:
+                pass
 
