@@ -47,7 +47,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [ ] Bato
 - [x] Serimanga
 - [x] MangaFire (using MalSyncBackup)
-- [ ] MangaNato (using MalSyncBackup)
+- [x] MangaNato (using MalSyncBackup)
 - [ ] MangaSee (using MalSyncBackup)
 
 ### Current Sources (Ero-Manga):
