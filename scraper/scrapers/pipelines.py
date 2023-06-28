@@ -55,12 +55,17 @@ class MangaPipeline():
         if not crawler.settings.getbool('MANGAPIPELINE_ENABLED'):
             raise NotConfigured
         return cls()
-    def open_spider(self, _):
+    def open_spider(self, response):
+        print(f"########### STARTED {response}")
+        #send discord notification here
         pass
-    def close_spider(self, _):
+    def close_spider(self, response):
+        print(f"########### FINISHED {response}")
+        #send discord notification here
         pass
     def process_item(self, item, _):
-        return item
+        newItem = combine_item(matchName(item))
+        return newItem
 
 class EroMangaPipeline():
     
