@@ -83,7 +83,6 @@ def matchName(item):
                     titles.append({"title": title["title"], "mal_id": anime["mal_id"]})
                 similarTitles.append(getMaxSimilarity(item_title, titles))
             best_title = getMaxSimilarity(item_title, similarTitles)
-            print(best_title)
             if best_title is None:
                 print(f"########### CACHE MISS: {item_title}, {item_type}, None")
                 return {
