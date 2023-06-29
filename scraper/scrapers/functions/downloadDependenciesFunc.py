@@ -15,8 +15,11 @@ def download_dependencies():
             print("Dependencies already downloaded and up to date.")
             return True
     file = requests.get("https://github.com/MALSync/MAL-Sync-Backup/archive/refs/heads/master.zip", stream=True)
+    # total file size in bytes is 226 mb
+    filesize = 230 * 1024 * 1024
+    # estimation
     with open("master.zip", "wb") as f:
-        with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc="Downloading dependencies", total=int(file.headers['Content-Length'])) as progress:
+        with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc="Downloading dependencies", total=filesize) as progress:
             for chunk in file.iter_content(chunk_size=1024):
                 f.write(chunk)
                 progress.update(len(chunk))
@@ -27,3 +30,5 @@ def download_dependencies():
     zip_ref.close()
     print("Extracted dependencies and ready to scrape.")
     return True
+
+download_dependencies()
