@@ -73,8 +73,8 @@ def setupMeilisearch(type):
         })
     elif type == "Manga" or type == "Eromanga":
         index.update_settings({
-            distinctAttribute: "id",
-            searchableAttributes: [
+            "distinctAttribute": "id",
+            "searchableAttributes": [
                 "title",
                 "titles",
                 "mal_id",
@@ -82,7 +82,7 @@ def setupMeilisearch(type):
                 "metadata.tags",
                 "metadata.authors",
             ],
-            displayedAttributes: [
+            "displayedAttributes": [
                 "*",
             ]
         })
