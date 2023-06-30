@@ -117,6 +117,11 @@ def getEpisodes(mal_id, item_type):
         return episodes
     else:
         return []
+def getAuthors(data):
+    authors = []
+    for each in data["authors"]:
+        authors.append(each["name"])
+    return authors
 def getJikanMetadata(mal_id, item_type, links):
     data = {}
     try:
@@ -127,6 +132,10 @@ def getJikanMetadata(mal_id, item_type, links):
             data["link"] = getStreamingLinks(metadata["data"]["streaming"], links)
         elif item_type == "Manga" or item_type == "EroManga":
             metadata = jikan.manga(mal_id, extension="full")
+            readingLinks = []
+            for key, value in links.items():
+                readingLinks.append({key: value})
+            data["link"] = readingLinks
             time.sleep(1)
         title = metadata["data"]["title"]
         data["poster"] = metadata["data"]["images"]["webp"]["large_image_url"]
@@ -136,16 +145,25 @@ def getJikanMetadata(mal_id, item_type, links):
         data["score"] = metadata["data"]["score"]
         data["rank"] = metadata["data"]["rank"]
         data["status"] = metadata["data"]["status"]
-        data["episodes"] = getEpisodes(mal_id, item_type)
-        data["aired"] = metadata["data"]["aired"]
+        if item_type == "Anime" or item_type == "Eroanime":
+            data["aired"] = metadata["data"]["aired"]
+            data["episodes_num"] = metadata["data"]["episodes"]
+            data["trailer"] = metadata["data"]["trailer"]["url"]
+            data["episodes"] = getEpisodes(mal_id, item_type)
+            characters_voiceactors = getCharactersVoiceActors(mal_id, item_type)
+            data["characters"] = characters_voiceactors["characters"]
+            data["voice_actors"] = characters_voiceactors["voice_actors"]
+            data["studios"] = getStudios(metadata["data"])
+        elif item_type == "Manga" or item_type == "Eromanga":
+            characters_voiceactors = getCharactersVoiceActors(mal_id, item_type)
+            data["characters"] = characters_voiceactors["characters"]
+            data["published"] = metadata["data"]["published"]
+            data["chapters"] = metadata["data"]["chapters"]
+            data["volumes"] = metadata["data"]["volumes"]
+            data["trailer"] = None
+            data["authors"] = getAuthors(metadata["data"])
         data["external_links"] = metadata["data"]["external"]
-        data["episodes_num"] = metadata["data"]["episodes"]
-        data["trailer"] = metadata["data"]["trailer"]["url"]
         data["images"] = []
-        characters_voiceactors = getCharactersVoiceActors(mal_id, item_type)
-        data["characters"] = characters_voiceactors["characters"]
-        data["voice_actors"] = characters_voiceactors["voice_actors"]
-        data["studios"] = getStudios(metadata["data"])
         data["nyaarss"] = f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0"  # noqa: E501
         
         data["titles"] = getTitles(metadata["data"])

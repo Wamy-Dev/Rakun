@@ -52,7 +52,7 @@ def setupMeilisearch(type):
     searchclient.index(type).update(primary_key="id")
     index = searchclient.index(type)
     index.delete_all_documents()
-    if type == "Anime":
+    if type == "Anime" or type == "Eroanime":
         # update searchable attributes
         index.update_settings({
             "distinctAttribute": "id",
@@ -68,6 +68,21 @@ def setupMeilisearch(type):
                 "metadata.studios",
             ],
             "displayedAttributes": [
+                "*",
+            ]
+        })
+    elif type == "Manga" or type == "Eromanga":
+        index.update_settings({
+            distinctAttribute: "id",
+            searchableAttributes: [
+                "title",
+                "titles",
+                "mal_id",
+                "ani_id",
+                "metadata.tags",
+                "metadata.authors",
+            ],
+            displayedAttributes: [
                 "*",
             ]
         })

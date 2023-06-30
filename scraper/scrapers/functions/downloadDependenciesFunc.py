@@ -30,5 +30,3 @@ def download_dependencies():
     zip_ref.close()
     print("Extracted dependencies and ready to scrape.")
     return True
-
-download_dependencies()
