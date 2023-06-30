@@ -205,6 +205,10 @@ def getMetadata(keys, item):
                 "trailer": None,
                 "images": [],
                 "characters": [],
+                "volumes": -1,
+                "chapters": -1,
+                "published": None,
+                "authors": [],
                 "voice_actors": [],
                 "studios": None,
                 "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0"  # noqa: E501
@@ -242,6 +246,10 @@ def getMetadata(keys, item):
                     "trailer": None,
                     "images": [],
                     "characters": [],
+                    "volumes": -1,
+                    "chapters": -1,
+                    "published": None,
+                    "authors": [],
                     "voice_actors": [],
                     "studios": None,
                     "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0"  # noqa: E501
