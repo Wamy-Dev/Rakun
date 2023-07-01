@@ -131,7 +131,7 @@ class Scraper:
                 item_type = eval(key)[1]
                 database = db[item_type]
                 item = getMetadata(key, value)
-                old_item = database.find_one({"mal_id": item["mal_id"]})
+                old_item = database.find_one({"title": item["title"]})
                 if old_item is None:
                     database.insert_one(item)
                     print(f"########### DATABASE ADD: {item['title']}, {item['type']}, {item['mal_id']}")
