@@ -54,7 +54,7 @@ def getMaxSimilarity(item_title, titles):
     for title in titles:
         if title is None:
             continue
-        similarity = fuzz.token_sort_ratio(item_title, title["title"])
+        similarity = fuzz.token_set_ratio(item_title, title["title"])
         if similarity == 100:
             return {"title":title["title"], "mal_id":title["mal_id"]}
         if similarity < 80:
