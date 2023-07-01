@@ -97,23 +97,23 @@ class Scraper:
 
         self.process = CrawlerProcess(get_project_settings())
         self.spiders = [
-            AnimeflixSpider,
-            AnimePaheSpider,
-            GogoanimeSpider,
-            KatoSpider,
-            MarinSpider,
-            NineanimeSpider,
-            YugenSpider,
-            ZoroSpider,
-            MangadexSpider,
-            ComickSpider,
-            MangareaderSpider,
-            MangafoxSpider,
-            BatoSpider,
+            # AnimeflixSpider,
+            # AnimePaheSpider,
+            # GogoanimeSpider,
+            # KatoSpider,
+            # MarinSpider,
+            # NineanimeSpider,
+            # YugenSpider,
+            # ZoroSpider,
+            # MangadexSpider,
+            # ComickSpider,
+            # MangareaderSpider,
+            # MangafoxSpider,
+            # BatoSpider,
             SerimangaSpider,
-            MangafireSpider,
-            ManganatoSpider,
-            MangaseeSpider,
+            # MangafireSpider,
+            # ManganatoSpider,
+            # MangaseeSpider,
         ]
 
     def run_spiders(self):
@@ -152,16 +152,20 @@ class Scraper:
     def upload(self):
         collections = ["Anime", "Manga"]
         for collection in collections:
-            index = setupMeilisearch(collection)
-            data = getAllMongo(collection)
-            items = []
-            for item in data:
-                item.pop("_id")
-                item["poster"] = item["metadata"]["poster"]
-                items.append(item)
-            process = index.add_documents(items)
-            print(process)
-            print(f"########### MEILISEARCH UPLOAD: {collection}")
+            try:
+                index = setupMeilisearch(collection)
+                data = getAllMongo(collection)
+                items = []
+                for item in data:
+                    item.pop("_id")
+                    item["poster"] = item["metadata"]["poster"]
+                    items.append(item)
+                process = index.add_documents(items)
+                print(process)
+                print(f"########### MEILISEARCH UPLOAD: {collection}")
+            except Exception as e:
+                print(f"########### MEILISEARCH ERROR: {e}")
+                continue
 
 
 
