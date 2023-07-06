@@ -4,6 +4,9 @@
 </div>
 
 # [Rakun.app](https://rakun.app) - The Fastest and Largest Pirated Anime, Manga, Ero-Manga and Ero-Anime Search Engine
+ <div align="center">
+  <img src="/assets/rakunFrame.png" borderRadius="20">
+</div>
 [why does that sound familiar?](https://github.com/Wamy-Dev/ReziWebsite)
 
 
