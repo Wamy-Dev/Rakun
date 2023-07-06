@@ -6,7 +6,7 @@ class ZoroSpider(scrapy.Spider):
     Scrapes Anime from Zoro
     '''
     name = "zoro"
-    allowed_domains = ["zoro.to"]
+    allowed_domains = ["zoro.to", "aniwatch.to"]
     start_urls = ["https://zoro.to/az-list"]
     custom_settings = {
         "ANIMEPIPELINE_ENABLED": True,
