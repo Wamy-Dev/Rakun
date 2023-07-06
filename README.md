@@ -7,8 +7,6 @@
  <div align="center">
   <img src="/assets/rakunFrame.png" borderRadius="20">
 </div>
-[why does that sound familiar?](https://github.com/Wamy-Dev/ReziWebsite)
-
 
 # What exactly is Rakun?
 Rakun.app is a pirated content search engine targeted to new users to the anime piracy scene. The goal was to create a search engine that would have every anime (as well as the most sources) while still being faster than any other search engines such as Google or DuckDuckGo. It simply functions by getting the newest data from all the sources every 24 hours and adds it to the search engine with all the necessary metadata so you can search for it, as well as view it in a beautiful interface powered by [Sira](https://www.sira-design.party/). Like Rezi, another pirated search engine I have created, it works autonomously and automatically so you can get the newest anime as soon as they become available. If a link becomes dead it is also automatically cleared out.
@@ -60,6 +58,9 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 
 # Piracy
 Yes, of course, this is all built around piracy and made for it. **As a reminder, this site will never host any content other than just links, so it will never be taken down for piracy for any reason, and as it is open-source, anybody could start their own site using the same principals if they wanted.**
+
+# This is great! Is there anything else like this?
+Yes! I have also made [Rezi](https://rezi.one) another piracy oriented search engine for specifically pirated games. You can view the GitHub [here](https://github.com/wamy-dev/reziwebsite). Both search engine sites have fantastic API's and sites, and are aimed at people who are just starting their piracy journey and want to find the best sources quick.
 
 #
 
