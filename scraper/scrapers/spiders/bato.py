@@ -23,6 +23,6 @@ class BatoSpider(scrapy.Spider):
             title = manga.css("a.link-hover.link-pri span ::text").get()
             link = manga.css("a.link-hover.link-pri ::attr(href)").get()
             mangaItem["title"] = title.split("[")[0].strip().split("(")[0].strip()
-            mangaItem["link"] = {"Bato": f"https://bato..to{link}"}
+            mangaItem["link"] = {"Bato": f"https://bato.to{link}"}
             mangaItem["type"] = "Manga"
             yield mangaItem
