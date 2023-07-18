@@ -28,7 +28,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] Kato
 - [x] 9Anime
 - [x] Yugen
-- [x] Zoro
+- [x] Aniwatch
 - [x] Marin [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/Marin)
 - [ ] KickAssAnimes
 

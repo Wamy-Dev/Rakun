@@ -1,13 +1,13 @@
 import scrapy
 from scrapers.items import ScrapersItem
 
-class ZoroSpider(scrapy.Spider):
+class AniwatchSpider(scrapy.Spider):
     '''
-    Scrapes Anime from Zoro
+    Scrapes Anime from Aniwatch
     '''
-    name = "zoro"
-    allowed_domains = ["zoro.to", "aniwatch.to"]
-    start_urls = ["https://zoro.to/az-list"]
+    name = "aniwatch"
+    allowed_domains = ["aniwatch.to"]
+    start_urls = ["https://aniwatch.to/az-list"]
     custom_settings = {
         "ANIMEPIPELINE_ENABLED": True,
     }
@@ -18,14 +18,14 @@ class ZoroSpider(scrapy.Spider):
         if totalPages and currentPage:
             if int(currentPage) == 1:
                 for pageNumber in range(2, int(totalPages) + 1):
-                    yield scrapy.Request(url=f"https://zoro.to/az-list?page={pageNumber}")
+                    yield scrapy.Request(url=f"https://aniwatch.to/az-list?page={pageNumber}")
                     
         animeList = response.css("a.dynamic-name")
         animeItem = ScrapersItem()
         for anime in animeList:
             title = anime.attrib["title"]
-            link = f"https://zoro.to{anime.attrib['href']}"
+            link = f"https://aniwatch.to{anime.attrib['href']}"
             animeItem["title"] = title
-            animeItem["link"] = {"Zoro":link}
+            animeItem["link"] = {"Aniwatch":link}
             animeItem["type"] = "Anime"
             yield animeItem

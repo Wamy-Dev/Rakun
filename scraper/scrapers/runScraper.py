@@ -13,7 +13,7 @@ from .spiders.gogoanime import GogoanimeSpider
 from .spiders.kato import KatoSpider
 from .spiders.nineanime import NineanimeSpider
 from .spiders.yugen import YugenSpider
-from .spiders.zoro import ZoroSpider
+from .spiders.aniwatch import AniwatchSpider
 from .spiders.marin import MarinSpider
 
 # Manga
@@ -104,7 +104,7 @@ class Scraper:
             MarinSpider,
             NineanimeSpider,
             YugenSpider,
-            ZoroSpider,
+            AniwatchSpider,
             MangadexSpider,
             ComickSpider,
             MangareaderSpider,
