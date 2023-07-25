@@ -8,5 +8,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 ENV MONGODB_CONNECTION_URI="mongodb://mongo:27017/"
+ENV MEILISEARCH_HOST=""
+ENV MEILISEARCH_API_KEY=""
 
 CMD [ "python3", "main.py" ]
