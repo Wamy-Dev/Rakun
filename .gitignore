@@ -162,3 +162,10 @@ results.json
 process-results.json
 malSyncData
 master.zip
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
+malSyncData
+malsyncbackup.zip
+results.csv

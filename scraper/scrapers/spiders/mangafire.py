@@ -12,12 +12,12 @@ class MangafireSpider(scrapy.Spider):
     }
 
     def parse(self, _):
-        files = os.listdir("malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire")
+        files = os.listdir("malSyncData/malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire")
         mangaItem = ScrapersItem()
         for file in files:
             #open each json file
             try:
-                with open(f"malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire/{file}", "r") as f:
+                with open(f"malSyncData/malSyncData/MAL-Sync-Backup-master/data/pages/MangaFire/{file}", "r") as f:
                     data = json.load(f)
                     mangaItem["title"] = data["title"]
                     mangaItem["link"] = {"MangaFire": data["url"]}

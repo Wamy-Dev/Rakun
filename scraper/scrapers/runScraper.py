@@ -1,10 +1,11 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 import os
-import json
 from pymongo import MongoClient
 from appConfig import MONGODB_CONNECTION_URI, MEILISEARCH_API_KEY, MEILISEARCH_HOST
 import meilisearch
+import pandas as pd
+import ast
 
 # Anime
 from .spiders.animeflix import AnimeflixSpider
@@ -121,16 +122,17 @@ class Scraper:
             self.process.crawl(spider)
         self.process.start()
     def post_process(self):
-        with open("results.json", "r") as file:
-            try:
-                data = json.load(file)
-            except json.JSONDecodeError:
-                return False
-        for key, value in data.items():
-            try:
-                item_type = eval(key)[1]
-                database = db[item_type]
-                item = getMetadata(key, value)
+        data = pd.read_csv("results.csv")
+        for row in data.values.tolist()[::-1]:
+            title = row[0]
+            item_type = row[1]
+            links = ast.literal_eval(row[2])
+            mal_id = int(row[3])
+            if mal_id == -1:
+                mal_id = None
+            database = db[item_type]
+            try:                
+                item = getMetadata(title, item_type, links, mal_id)
                 old_item = database.find_one({"title": item["title"]})
                 if old_item is None:
                     database.insert_one(item)

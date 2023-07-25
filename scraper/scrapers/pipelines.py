@@ -6,7 +6,7 @@
 
 # useful for handling different item types with a single interface
 from scrapy.exceptions import NotConfigured
-from .functions.jsonFunc import combine_item
+from .functions.csvFunc import combine_item
 from .functions.matchFunc import matchName
 
 class AnimePipeline():

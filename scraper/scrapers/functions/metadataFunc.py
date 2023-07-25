@@ -55,8 +55,9 @@ def getAnilistID(mal_id, item_type):
         return None
 def getStreamingLinks(data, links):
     streaming_links = []
-    for key, value in links.items():
-        streaming_links.append({key: value})
+    for item in links:
+        for key, value in item.items():
+            streaming_links.append({key: value})
     if data:
         for link in data:
             source = link["name"]
@@ -133,8 +134,9 @@ def getJikanMetadata(mal_id, item_type, links):
         elif item_type == "Manga" or item_type == "EroManga":
             metadata = jikan.manga(mal_id, extension="full")
             readingLinks = []
-            for key, value in links.items():
-                readingLinks.append({key: value})
+            for item in links:
+                for key, value in item.items():
+                    readingLinks.append({key: value})
             data["link"] = readingLinks
             time.sleep(1)
         title = metadata["data"]["title"]
@@ -172,24 +174,17 @@ def getJikanMetadata(mal_id, item_type, links):
     except Exception as e:
         print(f"########### JIKAN META ERROR: {e}")
         return None
-def getMetadata(keys, item):
-    # get the keys of the item to access the data
-    item_name, item_type = eval(keys)
-    # get the mal id
-    try:
-        item["mal_id"]
-    except KeyError:
-        item["mal_id"] = None
-    if item["mal_id"] is None:
+def getMetadata(title, item_type, links, mal_id):
+    if mal_id is None:
         return {
-            "id": hashlib.md5((item_name + item_type).encode()).hexdigest(),
-            "title": item_name,
+            "id": hashlib.md5((title + item_type).encode()).hexdigest(),
+            "title": title,
             "titles": [], 
             "type": item_type,
             "content_type": "TV" if item_type == "Anime" or item_type == "EroAnime" else "Manga",
             "mal_id": None,
             "ani_id": None,
-            "link": item["link"],
+            "link": links,
             "metadata": {
                 "poster": None,
                 "banner": None,
@@ -211,26 +206,26 @@ def getMetadata(keys, item):
                 "authors": [],
                 "voice_actors": [],
                 "studios": None,
-                "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0"  # noqa: E501
+                "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0"  # noqa: E501
             }
         }
     else:
         data = {}
-        data["id"] = hashlib.md5((item_name + item_type).encode()).hexdigest()
-        data["title"] = item_name
-        data["mal_id"] = item["mal_id"]
-        data["ani_id"] = getAnilistID(item["mal_id"], item_type)
-        metadata = getJikanMetadata(item["mal_id"], item_type, item["link"])
+        data["id"] = hashlib.md5((title + item_type).encode()).hexdigest()
+        data["title"] = title
+        data["mal_id"] = mal_id
+        data["ani_id"] = getAnilistID(mal_id, item_type)
+        metadata = getJikanMetadata(mal_id, item_type, links)
         if metadata is None:
             return {
-                "id": hashlib.md5((item_name + item_type).encode()).hexdigest(),
-                "title": item_name,
+                "id": hashlib.md5((title + item_type).encode()).hexdigest(),
+                "title": title,
                 "titles": [], 
                 "type": item_type,
                 "content_type": "TV" if item_type == "Anime" or item_type == "EroAnime" else "Manga",
                 "mal_id": None,
                 "ani_id": None,
-                "link": item["link"],
+                "link": links,
                 "metadata": {
                     "poster": None,
                     "banner": None,
@@ -252,7 +247,7 @@ def getMetadata(keys, item):
                     "authors": [],
                     "voice_actors": [],
                     "studios": None,
-                    "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(item_name)}&c=0_0&f=0"  # noqa: E501
+                    "nyaarss": f"https://sukebei.nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0" if item_type == "EroAnime" or item_type == "EroManga" else f"https://nyaa.si/?page=rss&q={urllib.parse.quote_plus(title)}&c=0_0&f=0"  # noqa: E501
                 }
             }
         else:

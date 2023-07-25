@@ -6,3 +6,4 @@ pymongo
 beautifulsoup4
 meilisearch
 tqdm
+pandas
