@@ -3,8 +3,8 @@ from scrapers.items import ScrapersItem
 
 class NineanimeSpider(scrapy.Spider):
     name = 'nineanime'
-    allowed_domains = ['9anime.to', "9anime.se"]
-    start_urls = ['https://9anime.to/az-list']
+    allowed_domains = ['9anime.to', "9anime.se", "aniwave.to"]
+    start_urls = ['https://aniwave.to/az-list']
     custom_settings = {
         "ANIMEPIPELINE_ENABLED": True,
     }
@@ -16,13 +16,13 @@ class NineanimeSpider(scrapy.Spider):
         if totalPages and currentPage:
             if int(currentPage) == 1:
                 for pageNumber in range(2, int(totalPages) + 1):
-                    yield scrapy.Request(f"https://9anime.to/az-list?page={pageNumber}")
+                    yield scrapy.Request(f"https://aniwave.to/az-list?page={pageNumber}")
         animeList = response.css("div#list-items div.item div.b1")
         animeItem = ScrapersItem()
         for anime in animeList:
             title = anime.css("a.name ::text").get()
             link = anime.css("a.name").attrib["href"]
             animeItem["title"] = title
-            animeItem["link"] = {"9Anime":f"https://9anime.to{link}"}
+            animeItem["link"] = {"Aniwave":f"https://aniwave.to{link}"}
             animeItem["type"] = "Anime"
             yield animeItem

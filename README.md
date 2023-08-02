@@ -26,9 +26,9 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 - [x] Animepahe
 - [x] Gogoanime
 - [x] Kato
-- [x] 9Anime
+- [x] Aniwave (previously 9anime)
 - [x] Yugen
-- [x] Aniwatch
+- [x] Aniwatch (previously Zoro)
 - [x] Marin [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/Marin)
 - [ ] KickAssAnimes
 
@@ -43,7 +43,7 @@ Yes! You can view the documentation [here](https://docs.rakun.app). There are ot
 ### Current Sources (Manga):
 - [x] MangaDex [using MalSyncBackup](https://github.com/MALSync/MAL-Sync-Backup/tree/master/data/pages/Mangadex)
 - [x] Comick
-- [x] MangaReader
+- [x] MangaReader x
 - [x] MangaFox
 - [x] Bato
 - [x] Serimanga
